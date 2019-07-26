@@ -97,13 +97,13 @@ int ecdh_shared_secret(uint8_t p_secret[NUM_ECC_DIGITS], EccPoint *p_publicKey, 
 
 //added by lhb
 int sm2_get_e(char *IDa, int IDLen, unsigned char *xa, unsigned char *ya, unsigned char *plaintext, unsigned int plainLen, unsigned char *e);
-/*sm2 签名接口*/
+/*sm2 绛惧悕鎺ュ彛*/
 int sm2_sign(EccSig *sig, uint8_t *msg, unsigned int msg_len, uint8_t *IDa, uint8_t IDa_len, uint8_t p_privateKey[NUM_ECC_DIGITS], uint8_t p_random[NUM_ECC_DIGITS]);
-/*sm2 验签接口*/
+/*sm2 楠岀鎺ュ彛*/
 int sm2_verify(EccSig *sig, uint8_t *msg, unsigned int msg_len, uint8_t *IDa, uint8_t IDa_len, EccPoint *p_pubk);
-/*sm2 加密接口*/
+/*sm2 鍔犲瘑鎺ュ彛*/
 int sm2_encrypt(uint8_t *cipher_text, unsigned int *cipher_len, EccPoint *p_publicKey, uint8_t p_random[NUM_ECC_DIGITS], uint8_t *plain_text, unsigned int plain_len);
-/*sm2 解密接口*/
+/*sm2 瑙ｅ瘑鎺ュ彛*/
 int sm2_decrypt(uint8_t *plain_text, uint8_t *plain_len, uint8_t *cipher_text, uint8_t cipher_len, uint8_t p_privateKey[NUM_ECC_DIGITS]);
 
 
