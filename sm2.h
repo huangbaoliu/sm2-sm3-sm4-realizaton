@@ -93,7 +93,7 @@ If this is not done, an attacker could create a public key that would cause your
 about your private key. */
 int ecdh_shared_secret(uint8_t p_secret[NUM_ECC_DIGITS], EccPoint *p_publicKey, uint8_t p_privateKey[NUM_ECC_DIGITS], uint8_t p_random[NUM_ECC_DIGITS]);
 
-#if ECC_ECDSA
+#if SM2_ECDSA
 
 //added by lhb
 int sm2_get_e(char *IDa, int IDLen, unsigned char *xa, unsigned char *ya, unsigned char *plaintext, unsigned int plainLen, unsigned char *e);
