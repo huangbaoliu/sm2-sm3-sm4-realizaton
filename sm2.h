@@ -95,11 +95,8 @@ int ecdh_shared_secret(uint8_t p_secret[NUM_ECC_DIGITS], EccPoint *p_publicKey, 
 
 #if ECC_ECDSA
 
+//added by lhb
 int sm2_get_e(char *IDa, int IDLen, unsigned char *xa, unsigned char *ya, unsigned char *plaintext, unsigned int plainLen, unsigned char *e);
-/*点加运算*/
-void point_add(EccPoint *pointout, EccPoint *pointp1, EccPoint *pointp2);
-/*根据标识，从公钥矩阵计算公钥点*/
-int cal_point_by_id(EccPoint *point_out, unsigned char *pkm_data, unsigned char *identity);
 /*sm2 签名接口*/
 int sm2_sign(EccSig *sig, uint8_t *msg, unsigned int msg_len, uint8_t *IDa, uint8_t IDa_len, uint8_t p_privateKey[NUM_ECC_DIGITS], uint8_t p_random[NUM_ECC_DIGITS]);
 /*sm2 验签接口*/
