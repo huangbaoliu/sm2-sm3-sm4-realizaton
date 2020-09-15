@@ -1,4 +1,4 @@
-sm2-sved
+sm2-sm3-sm4-realizaton
 ========
 
 这是一个纯软c实现的SM2、SM3、SM4函数库，未使用openssl等第三方库，目前仅支持256位SM2。代码基于nano-sm2实现（8位处理器上的ecc实现，详情见https://github.com/Aries-orz/nano-sm2）。
@@ -38,5 +38,4 @@ n=FFFFFFFE FFFFFFFF FFFFFFFF FFFFFFFF 7203DF6B 21C6052B 53BBF409 39D54123
 Gx=32C4AE2C 1F198119 5F990446 6A39C994 8FE30BBF F2660BE1 715A4589 334C74C7  
 Gy=BC3736A2 F4F6779C 59BDCEE3 6B692153 D0A9877C C62A4740 02DF32E5 2139F0A0  
 
-"# sm2-sved-master" 
-"# sm2-sved-master" 
+"# sm2-sm3-sm4-realizaton" 
