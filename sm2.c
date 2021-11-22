@@ -829,7 +829,7 @@ int sm2_get_e(char *IDa, int IDLen, unsigned char *xa, unsigned char *ya, unsign
     return 1;
 }
 
-/* ZA=H256(ENTLA || IDA || a || b || xG || yG || xA || yA)ã€?*/
+/* ZA=H256(ENTLA || IDA || a || b || xG || yG || xA || yA)Ã£Â€?*/
 int sm2_get_z(unsigned char *IDa, int IDLen, unsigned char *xa, unsigned char *ya, unsigned char *Za)
 {
 
@@ -1166,7 +1166,7 @@ int sm2_sign(EccSig *sig, uint8_t *msg, unsigned int msg_len, uint8_t *IDa, uint
     printf("\n");
 #endif
 
-    //Õý³£¼ÆËãeÖµ
+    //Ã•Ã½Â³Â£Â¼Ã†Ã‹Ã£eÃ–Âµ
     sm2_get_e(IDa, IDa_len, p_pubk.x, p_pubk.y, msg, msg_len, e_hash);
 
     for (i=0; i<NUM_ECC_DIGITS/2; i++)
@@ -1211,7 +1211,7 @@ int sm2_verify(EccSig *sig, uint8_t *msg, unsigned int msg_len, uint8_t *IDa, ui
 
     EccPoint p_publicKey;
 
-    //Õý³£¼ÆËãeÖµ
+    //Ã•Ã½Â³Â£Â¼Ã†Ã‹Ã£eÃ–Âµ
     sm2_get_e(IDa, IDa_len, p_pubk->x, p_pubk->y, msg, msg_len, e_hash);
 
     for (i=0; i<NUM_ECC_DIGITS; i++)
@@ -1301,6 +1301,12 @@ int sm2_encrypt(uint8_t *cipher_text, unsigned int *cipher_len, EccPoint *p_publ
     uint8_t C3[NUM_ECC_DIGITS];
     sm3_context sm3_ctx;
 
+    if (*cipher_len < NUM_ECC_DIGITS * 3 + 1 + plain_len)
+    {
+        printf("ciphertext buffer len error\n");
+        return 0;
+    }
+    
 //A1:generate random number k;
     for (i=0; i < NUM_ECC_DIGITS; i++)
     {
@@ -1395,9 +1401,15 @@ int sm2_decrypt(uint8_t *plain_text, uint8_t *plain_len, uint8_t *cipher_text, u
     int C2_len = 0;
 
     p_C1 = (EccPoint *)(cipher_text + 1);
-    p_C3 = cipher_text + 65;
-    p_C2 = cipher_text + 97;
-    C2_len = cipher_len - 97;
+    p_C3 = cipher_text + NUM_ECC_DIGITS*2 + 1;
+    p_C2 = cipher_text + NUM_ECC_DIGITS*3 + 1;
+    C2_len = cipher_len - NUM_ECC_DIGITS*3 - 1;
+    
+    if (*plain_len < C2_len)
+    {
+        printf("plaintext buffer len error\n");
+        return 0;
+    }
 
     for (i = 0; i < NUM_ECC_DIGITS; i++)
     {
@@ -1493,7 +1505,6 @@ int sm2_decrypt(uint8_t *plain_text, uint8_t *plain_len, uint8_t *cipher_text, u
     {
         plain_text[i] ^= p_C2[i];
     }
-    plain_text[*plain_len] = '\0';
 
 // B6: check Hash(x2 || M || y2) == C3
     sm3_starts(&sm3_ctx);
