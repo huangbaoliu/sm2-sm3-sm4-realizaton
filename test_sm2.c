@@ -191,7 +191,7 @@ void test_sm2_encrypt_decrypt()
     int i = 0;
     int ret = 0;
     uint8_t encdata[1024];
-    unsigned int encdata_len;
+    unsigned int encdata_len = 1024;
     EccPoint p_publicKey;
     uint8_t p_privateKey[NUM_ECC_DIGITS];
     uint8_t p_random[NUM_ECC_DIGITS];
